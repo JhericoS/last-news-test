@@ -1,46 +1,79 @@
-# Getting Started with Create React App
+# Desarrollo de Lista de Últimas Noticias
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto consiste en desarrollar un componente de lista de noticias con funcionalidad de mostrar y ocultar. A continuación, se detallan los pasos y las tecnologías utilizadas en el desarrollo.
 
-## Available Scripts
+## Pasos de Desarrollo
 
-In the project directory, you can run:
+1. **Configuración del Proyecto:**
 
-### `npm start`
+   - Inicialización del proyecto con React (con Typescript).
+   - Instalación de dependencias: `axios` para las solicitudes HTTP y `sass` para el preprocesamiento de estilos.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+   ```bash
+   npx create-react-app last-news-test --template typescript
+   cd last-news-test
+   npm i axios sass
+   ```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2. **Estructura del Proyecto:**
 
-### `npm test`
+   - Implementación del componente principal (NewsList) y sus estilos.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```bash
+   NewsList.scss
+   NewsList.tsx
+   ```
 
-### `npm run build`
+3. **Obtención de Datos desde la API:**
+   - Utilización de Axios para realizar solicitudes a la API proporcionada.
+   ```bash
+   const fetchData = async () => {
+      try {
+        const response = await axios.get<NewsResponse>(
+          "https://api.jsonbin.io/v3/b/63654b012b3499323bf58225"
+        );
+        setNews(response.data);
+      } catch (error) {
+        console.error("Error fetching news:", error);
+      }
+    };
+   ```
+4. **Renderizado de Noticias:**
+   - Mapeo de datos para renderizar la lista de noticias.
+   - Implementación de la lógica para mostrar y ocultar noticias al hacer clic en el botón "Ver más".
+5. **Estilización con SCSS:**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   - Aplicación de estilos utilizando SCSS siguiendo las buenas prácticas.
+   - Añadido de efectos de hover en las noticias.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   li {
+     &:hover {
+       ...
+       h3 {
+         ...
+       }
+       img {
+         ...
+       }
+     }
+   }
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   - Implementación de estilos responsivos utilizando media queries.
 
-### `npm run eject`
+   ```bash
+   @media (max-width: 600px) {
+     ...
+   }
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Tecnologías Utilizadas
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- HTML
+- React
+- SCSS
+- TypeScript
+- Axios (para la solicitud a la API)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Desarrollado por Jherico Solier
